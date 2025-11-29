@@ -1,0 +1,24 @@
+{%load static%} {%load account%} {%load i18n%} {% autoescape off %}
+<center>
+    <h3>{{site_name}}</h3>
+    <h4> Verify Email ID</h4>
+    <p>
+        Have we got the right email adress to reach you out, if so click on the link below
+    </p>
+    <a
+      href='http://{{current_site}}/auth/signup-verification/{{key}}'
+      target = '_blank'
+      rel = 'noopener noreferrer'
+    >
+    <button>Confirm my email adress</button>
+    </a>
+
+    <footer>
+        <div>
+            <small> Thank </small>
+            <br />
+            <small> Team {{site_name}} </small>
+        </div>
+    </footer>
+</center>
+{% endautoescape %}
