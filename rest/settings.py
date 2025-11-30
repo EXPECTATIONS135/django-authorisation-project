@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
+import os
+import dj_database_url
 from datetime import timedelta
 from pathlib import Path
 from os import environ as env
@@ -92,14 +94,7 @@ WSGI_APPLICATION = 'rest.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default':{
-    'ENGINE' : 'django.db.backends.postgresql',
-    'NAME' : env['DB_NAME'],
-    'USER' : env['DB_USER'],
-    'PASSWORD':env['DB_PASSWORD'],
-    'HOST':env['DB_HOST'],
-    'PORT':env['DB_PORT'],
-    }
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
 
 
