@@ -9,10 +9,14 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
+import dj_database_url
 from datetime import timedelta
 from pathlib import Path
-from os import environ as env
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+import os
+from os import environ as env 
+
+
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -21,6 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env['SECRET_KEY']
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -90,18 +97,25 @@ WSGI_APPLICATION = 'rest.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
+#postgresql://postgresql_django_render_user:W5ECtvGntLDqRoKvE4OJaRDE0PnMvWIx@dpg-d4m8dv0gjchc73b43p10-a/postgresql_django_render
+# DATABASES = {
+#     'default':{
+#     'ENGINE' : 'django.db.backends.postgresql',
+#     'NAME' : env['DB_NAME'],
+#     'USER' : env['DB_USER'],
+#     'PASSWORD':env['DB_PASSWORD'],
+#     'HOST':env['DB_HOST'],
+#     'PORT':env['DB_PORT'],
+#     }
+#}
+#
 DATABASES = {
-    'default':{
-    'ENGINE' : 'django.db.backends.postgresql',
-    'NAME' : env['DB_NAME'],
-    'USER' : env['DB_USER'],
-    'PASSWORD':env['DB_PASSWORD'],
-    'HOST':env['DB_HOST'],
-    'PORT':env['DB_PORT'],
-    }
+    'default': dj_database_url.config(
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
-
+#DATABASES['default'] = dj_database_url.config('postgresql://postgresql_django_render_user:W5ECtvGntLDqRoKvE4OJaRDE0PnMvWIx@dpg-d4m8dv0gjchc73b43p10-a/postgresql_django_render')
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

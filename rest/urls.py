@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
+from django.views.generic import RedirectView
 from dj_rest_auth.views import PasswordResetConfirmView, PasswordResetView
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
@@ -33,6 +34,7 @@ schema_view = get_schema_view(
 ) 
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='/swagger/', permanent=False)),
     path('admin/', admin.site.urls),
     path('auth/',  include('dj_rest_auth.urls')),
     path('auth/registration/',include('dj_rest_auth.registration.urls')),
