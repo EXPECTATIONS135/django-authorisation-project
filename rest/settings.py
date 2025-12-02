@@ -115,7 +115,6 @@ DATABASES = {
         ssl_require=True
     )
 }
-#DATABASES['default'] = dj_database_url.config('postgresql://postgresql_django_render_user:W5ECtvGntLDqRoKvE4OJaRDE0PnMvWIx@dpg-d4m8dv0gjchc73b43p10-a/postgresql_django_render')
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
